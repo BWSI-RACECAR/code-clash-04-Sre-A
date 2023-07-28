@@ -27,7 +27,14 @@ Input: [0, 3, 4, 9] ; Output: 5
 Input: [10, 8, 4, 1] ; Output: 4
 Input: [5, 0, 3, 6] ; Output: 3
 """
-
+def selectionSort(array, size):
+    for ind in range(size):
+        min_index = ind
+        for j in range(ind + 1, size):
+            if array[j] < array[min_index]:
+                min_index = j
+        (array[ind], array[min_index]) = (array[min_index], array[ind])
+        
 class Solution:    
     def longestdistance(self, checkpoints):
             # Sort checkpoints from least to greatest
@@ -35,8 +42,14 @@ class Solution:
             #return type: int
             
             #TODO: Write code below to returnn an int with the solution to the prompt.
-            
-            pass
+            selectionSort(checkpoints,len(checkpoints) )
+            max = 0
+            index = 1
+            for i in checkpoints[:-1]:
+                if abs(i - checkpoints[index]) > max:
+                    max = abs(i - checkpoints[index])
+                index += 1
+            return max
 
 def main():
     array = input().split(" ")
